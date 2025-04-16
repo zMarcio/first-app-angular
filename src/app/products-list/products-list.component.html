@@ -1,0 +1,26 @@
+<div class="container">
+  <h2 class="title">CRUD de Produtos</h2>
+
+  <div class="product-container">
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Preço</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{ product.nameProduct }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.price | currency:'BRL' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="btn-container">
+    <button class="add-btn" (click)="openDialog()">Adicionar Produto</button>
+  </div>
+</div>
