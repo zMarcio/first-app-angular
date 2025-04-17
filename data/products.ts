@@ -1,4 +1,4 @@
-export interface Prod{
+export interface Prod {
   id: number;
   nameProduct: string;
   price: number;
@@ -8,7 +8,7 @@ export interface Prod{
 
 export class Product{
   public static products: Prod[] = [
-    { id: 1, nameProduct: 'Product 1', price: 10, description: 'Description of Product 1', createdAt: '2023-10-01' },
+    { id: 10, nameProduct: 'Product 1', price: 10, description: 'Description of Product 1', createdAt: '2023-10-01' },
     { id: 2, nameProduct: 'Product 2', price: 20, description: 'Description of Product 2', createdAt: '2023-10-02' },
     { id: 3, nameProduct: 'Product 3', price: 30, description: 'Description of Product 3', createdAt: '2023-10-03' },
     { id: 4, nameProduct: 'Product 4', price: 40, description: 'Description of Product 4', createdAt: '2023-10-04' },
@@ -22,6 +22,24 @@ export class Product{
 
   static getProducts(): Prod[] {
     return this.products;
+  }
+
+  static getProductById(id: number): Prod | undefined {
+    return this.products.find(product => product.id === id);
+  }
+
+  static updateProduct(updatedProduct: Prod): void {
+    this.products.map((product) => {
+      // console.log("Product ID:", product.id, "Updated Product ID:", updatedProduct.id);
+      if (product.id === updatedProduct.id) {
+        product.nameProduct = updatedProduct.nameProduct;
+        product.price = updatedProduct.price;
+        product.description = updatedProduct.description;
+        product.createdAt = updatedProduct.createdAt;
+      }
+      // console.log("Updating product:", product);
+      return product;
+    })
   }
 }
 

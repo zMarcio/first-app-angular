@@ -13,22 +13,42 @@ import { FormsProductComponent } from '../forms-product/forms-product.component'
 
 export class ProductsListComponent {
   products : Prod[] = [...Product.getProducts()]
+  lenProd : number = this.products.length;
+
+  editarImage = "assets/icons/editar.png";
+  excluirImage = "assets/icons/excluir.png";
+
+
   constructor(public dialog: MatDialog) {}
 
-  openDialog(): void {
+  // console.log(product)
+  openDialog(product?:Prod): void {
     let dialogRef = this.dialog.open(FormsProductComponent, {
       width: '1000px',
+      data: product,
     });
 
+
+
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.addProduct(result);
+      if (result) this.addProduct(result, product);
+      this.products = [...Product.getProducts()];
     });
   }
 
-  addProduct(prod: Prod): void {
-    console.log(prod)
-    Product.addProduct(prod);
-    this.products = [...Product.getProducts()];
+  addProduct(prod: Prod, product?: Prod): void {
+    const idExists = this.products.find((p) => p.id === product?.id);
+    if (idExists) {
+      const newProduct: Prod = {
+        id: product?.id || 0,
+        nameProduct: prod.nameProduct,
+        price: prod.price,
+        description: prod.description,
+        createdAt: prod.createdAt,
+      }
+      Product.updateProduct(newProduct);
+    } else {
+      Product.addProduct(prod);
+    }
   }
 }

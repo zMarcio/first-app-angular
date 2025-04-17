@@ -9,7 +9,7 @@
           <th>Descrição</th>
           <th>Preço</th>
           <th>Data</th>
-          <th>Editar</th>
+          <th>Editar/Excluir</th>
         </tr>
       </thead>
       <tbody>
@@ -19,7 +19,14 @@
           <td>{{ product.price | currency:'BRL' }}</td>
           <td>{{ product.createdAt | date:'dd/MM/yyyy' }}</td>
           <td>
-            <!-- <button class="edit-btn" (click)="openDialog(product)">Editar</button> -->
+            <button class="icon-button" (click)="openDialog(product)">
+              <img [src]="editarImage" alt="editar" class="img-edit-button">
+
+            </button>
+
+            <button class="icon-button" >
+              <img [src]="excluirImage" class="img-edit-button" alt="Excluir">
+            </button>
           </td>
         </tr>
       </tbody>
