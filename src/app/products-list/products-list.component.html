@@ -8,6 +8,8 @@
           <th>Nome</th>
           <th>Descrição</th>
           <th>Preço</th>
+          <th>Data</th>
+          <th>Editar</th>
         </tr>
       </thead>
       <tbody>
@@ -15,6 +17,10 @@
           <td>{{ product.nameProduct }}</td>
           <td>{{ product.description }}</td>
           <td>{{ product.price | currency:'BRL' }}</td>
+          <td>{{ product.createdAt | date:'dd/MM/yyyy' }}</td>
+          <td>
+            <!-- <button class="edit-btn" (click)="openDialog(product)">Editar</button> -->
+          </td>
         </tr>
       </tbody>
     </table>

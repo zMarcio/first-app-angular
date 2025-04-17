@@ -12,7 +12,8 @@ export class FormsProductComponent {
   productForm = new FormGroup({
     nameProduct: new FormControl(''),
     price: new FormControl(''),
-    description: new FormControl('')
+    description: new FormControl(''),
+    createdAt: new FormControl('')
   })
 
   constructor(
